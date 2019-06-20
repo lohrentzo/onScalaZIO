@@ -34,12 +34,22 @@ package object console {
    val readLine: ZIO[Console, IOException, String] =
      ZIO.accessM(_.console.readLine)
 }
-  
+ 
+
+trait Logging { def logging: Logging.Service }
+object Logging { trait Service {} }
+
+trait Persistence { def logging: Persistence.Service }
+object Persistence { trait Service {} }
+
+
+// let's create a composable type alias
+type ProgramEnv = Console with Logging with Persistence
 
 object Program extends App {
  
 // build the program as a functional effect
-val program: ZIO[Console, IOException, Unit] =
+val program: ZIO[ProgramEnv, IOException, Unit] =
   for {
     _    <- printLine("Good morning, what is your name?")
     name <- readLine
