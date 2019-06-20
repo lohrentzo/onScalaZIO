@@ -45,11 +45,12 @@ object Persistence { trait Service {} }
 
 // let's create a composable type alias
 type ProgramEnv = Console with Logging with Persistence
+type Program[A] = ZIO[ProgramEnv, IOException, A]
 
 object Program extends App {
  
 // build the program as a functional effect
-val program: ZIO[ProgramEnv, IOException, Unit] =
+val program: Program[Unit] =
   for {
     _    <- printLine("Good morning, what is your name?")
     name <- readLine
