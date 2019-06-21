@@ -5,6 +5,8 @@
 *.iws
 .idea
 out
+.cache-main
+.cache-tests
 .cache/
 .history/
 .lib/

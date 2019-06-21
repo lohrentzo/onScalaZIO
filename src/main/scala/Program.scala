@@ -1,8 +1,9 @@
 // https://skillsmatter.com/skillscasts/13247-scala-matters#video
-
+/*
+// must use dev.zio
 import zio.ZIO
+
 import java.io.IOException
-import zio.DefaultRuntime
 
 trait Console {
   def console: Console.Service
@@ -42,13 +43,12 @@ object Logging { trait Service {} }
 trait Persistence { def logging: Persistence.Service }
 object Persistence { trait Service {} }
 
-
+object Program extends App {
+ 
 // let's create a composable type alias
 type ProgramEnv = Console with Logging with Persistence
 type Program[A] = ZIO[ProgramEnv, IOException, A]
 
-object Program extends App {
- 
 // build the program as a functional effect
 val program: Program[Unit] =
   for {
@@ -60,3 +60,5 @@ val program: Program[Unit] =
  DefaultRuntime.unsafeRun(program.provide(ConsoleLive))
   
 }
+*/
+
